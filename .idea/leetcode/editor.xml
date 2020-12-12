@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="LeetcodeEditor">
+    <option name="projectConfig">
+      <map>
+        <entry key="$PROJECT_DIR$/src/main/java/com/tomster/leetcode/editor/cn/TwoSum.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/src/main/java/com/tomster/leetcode/editor/cn/TwoSum.java" />
+              <option name="questionId" value="1" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/com/tomster/leetcode/leetcode/editor/cn/ContainsDuplicate.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/src/main/java/com/tomster/leetcode/leetcode/editor/cn/ContainsDuplicate.java" />
+              <option name="questionId" value="217" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
