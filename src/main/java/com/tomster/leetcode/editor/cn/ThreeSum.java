@@ -44,13 +44,14 @@ public class ThreeSum {
             }
             Arrays.sort(nums);
 
+            //双指针法将O(N^3)的时间复杂度，降低为O(N^2)
             for (int i = 0; i < nums.length - 2; i++) {
                 //排序后的第一个数如果和前一个相同，则直接跳过
                 if (i > 0 && nums[i] == nums[i - 1]) {
                     continue;
                 }
                 //第一个数字大于0，直接跳出后面
-                if(nums[i]>0){
+                if (nums[i] > 0) {
                     break;
                 }
 
