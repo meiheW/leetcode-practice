@@ -48,6 +48,7 @@ public class RemoveNthNodeFromEndOfList {
             while (n-- != 0) {
                 first = first.next;
             }
+            //考虑头结点被删除的情况
             if(first==null){
                 return head.next;
             }
