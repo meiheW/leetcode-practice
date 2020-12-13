@@ -49,6 +49,10 @@ public class ThreeSum {
                 if (i > 0 && nums[i] == nums[i - 1]) {
                     continue;
                 }
+                //第一个数字大于0，直接跳出后面
+                if(nums[i]>0){
+                    break;
+                }
 
                 int low = i + 1;
                 int high = nums.length - 1;
