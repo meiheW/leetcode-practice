@@ -97,8 +97,6 @@ public class LetterCombinationsOfAPhoneNumber {
         }
 
 
-        //
-        //这虽然是一到简单题，但是给我们很多启示，看到这类题一定要想到考察的哪类基本算法
 
         /**
          * 我第一次AC的方法，非常一般，暴力解决，其实就是用了
