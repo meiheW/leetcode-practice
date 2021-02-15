@@ -35,7 +35,6 @@
 
 package com.tomster.leetcode.editor.cn;
 
-import com.sun.deploy.panel.TreeEditors;
 import com.tomster.leetcode.entity.TreeNode;
 
 import java.util.ArrayList;
