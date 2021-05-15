@@ -48,9 +48,9 @@ public class LeastNumberOfUniqueIntegersAfterKRemovals {
         public int findLeastNumOfUniqueInts(int[] arr, int k) {
             Map<Integer, Integer> countMap = new HashMap<>();
             List<Integer> list = new ArrayList<>();
-            for (int i = 0; i < arr.length; i++) {
-                countMap.put(arr[i], countMap.getOrDefault(arr[i], 0) + 1);
-                list.add(arr[i]);
+            for (int value : arr) {
+                countMap.put(value, countMap.getOrDefault(value, 0) + 1);
+                list.add(value);
             }
             list.sort((o1, o2) -> !countMap.get(o1).equals(countMap.get(o2))
                     ? Integer.compare(countMap.get(o1), countMap.get(o2))
