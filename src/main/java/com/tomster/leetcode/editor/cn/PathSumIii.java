@@ -57,6 +57,8 @@ public class PathSumIii {
      * }
      */
     class Solution {
+        //找出路径和等于给定数值的路径总数
+        //路径不需要从根节点开始，也不需要在叶子节点结束
         public int pathSum(TreeNode root, int sum) {
             if (root == null) {
                 return 0;
@@ -79,8 +81,6 @@ public class PathSumIii {
             traversal(root.left, sum - root.val);
             traversal(root.right, sum - root.val);
         }
-
-
     }
 //leetcode submit region end(Prohibit modification and deletion)
 
