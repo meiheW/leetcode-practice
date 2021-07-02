@@ -58,6 +58,11 @@ public class ScoreOfParentheses {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
+        /**
+         * ()1分；AB得A+B分；(A)得2*A分
+         * 输入： "(()(()))"
+         * 输出： 6
+         */
         public int scoreOfParentheses(String s) {
             Stack<Integer> stack = new Stack<>();
             stack.push(0);
