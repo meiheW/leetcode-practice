@@ -50,7 +50,9 @@
 
 package com.tomster.leetcode.editor.cn;
 
+import java.util.Comparator;
 import java.util.Map;
+import java.util.PriorityQueue;
 import java.util.TreeMap;
 
 /**
@@ -64,7 +66,29 @@ public class LongestContinuousSubarrayWithAbsoluteDiffLessThanOrEqualToLimit {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
+
         public int longestSubarray(int[] nums, int limit) {
+            PriorityQueue<Integer> minQueue = new PriorityQueue<>(Comparator.naturalOrder());
+            PriorityQueue<Integer> maxQueue = new PriorityQueue<>(Comparator.reverseOrder());
+            int n = nums.length;
+            int left = 0, right = 0;
+            int result = 0;
+            while (right < n) {
+                minQueue.offer(nums[right]);
+                maxQueue.offer(nums[right]);
+                while (maxQueue.peek() - minQueue.peek() > limit) {
+                    minQueue.remove(nums[left]);
+                    maxQueue.remove(nums[left]);
+                    left++;
+                }
+                result = Math.max(result, right - left + 1);
+                right++;
+            }
+            return result;
+        }
+
+
+        public int longestSubarray1(int[] nums, int limit) {
             int left = 0, right = 0;
             int n = nums.length;
             TreeMap<Integer, Integer> map = new TreeMap<>();
