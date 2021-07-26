@@ -58,6 +58,7 @@ public class KthSmallestElementInASortedMatrix {
                     if (pq.size() < k) {
                         pq.add(cur);
                     } else {
+                        //如果比堆顶元素高，这一行后面的就跳过
                         if (cur > pq.peek()) {
                             break;
                         } else {
