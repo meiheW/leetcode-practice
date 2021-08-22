@@ -79,7 +79,7 @@ public class FindAllAnagramsInAString {
                 }
             }
             return res;
-        }
+    }
     }
 //leetcode submit region end(Prohibit modification and deletion)
 
