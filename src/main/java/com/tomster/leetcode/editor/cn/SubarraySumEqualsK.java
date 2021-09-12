@@ -44,6 +44,8 @@ public class SubarraySumEqualsK {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
+        //输入：nums = [1,1,1], k = 2
+        //输出：2
         public int subarraySum(int[] nums, int k) {
             int ans = 0;
             int preSum = 0;
