@@ -35,7 +35,30 @@ public class ValidAnagram {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
+
+
         public boolean isAnagram(String s, String t) {
+            if (s == null || t == null) {
+                return s == null && t == null;
+            }
+            int[] count = new int[26];
+            for (char c : s.toCharArray()) {
+                count[c - 'a']++;
+            }
+            for (char c : t.toCharArray()) {
+                count[c - 'a']--;
+            }
+
+            for (int i = 0; i < 26; i++) {
+                if (count[i] != 0) {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+
+        public boolean isAnagram1(String s, String t) {
             Map<Character, Integer> mapS = getCharMap(s);
             Map<Character, Integer> mapT = getCharMap(t);
             return sameMap(mapS, mapT);
