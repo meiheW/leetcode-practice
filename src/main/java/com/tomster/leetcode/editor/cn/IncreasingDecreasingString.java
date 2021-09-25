@@ -78,6 +78,11 @@ public class IncreasingDecreasingString {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
+        /**
+         * 输入：s = "aaaabbbbcccc"
+         * 输出："abccbaabccba"
+         * 这一题可以用数组计数，更加简单
+         */
         public String sortString(String s) {
             if (s == null || s.length() == 0) {
                 return s;
