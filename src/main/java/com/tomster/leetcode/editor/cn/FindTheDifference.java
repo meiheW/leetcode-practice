@@ -59,7 +59,21 @@ public class FindTheDifference {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
+
         public char findTheDifference(String s, String t) {
+            int sum = 0;
+            for (int i = 0; i < t.length(); i++) {
+                sum += t.charAt(i) - 'a';
+            }
+            for (int i = 0; i < s.length(); i++) {
+                sum -= s.charAt(i) - 'a';
+            }
+            return (char) ('a' + sum);
+
+        }
+
+
+        public char findTheDifference1(String s, String t) {
             Map<Character, Integer> mapS = new HashMap<>();
             for (int i = 0; i < s.length(); i++) {
                 char cur = s.charAt(i);
