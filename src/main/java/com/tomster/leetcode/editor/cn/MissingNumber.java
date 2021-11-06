@@ -68,14 +68,14 @@ public class MissingNumber {
     class Solution {
         /**
          * 0-n中的n个数，求缺失的哪个数
-         * 输入：9,6,4,2,3,5,7,0,1]
+         * 输入：[9,6,4,2,3,5,7,0,1]
          * 输出：8
          */
         public int missingNumber(int[] nums) {
             int p = 0;
             int n = nums.length;
             while (p < n) {
-                while (nums[p] != n && nums[p] != p) {
+                while (nums[p] != p && nums[p] != n) {
                     swap(nums, p, nums[p]);
                 }
                 p++;
