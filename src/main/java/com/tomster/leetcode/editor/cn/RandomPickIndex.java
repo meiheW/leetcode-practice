@@ -33,7 +33,29 @@ public class RandomPickIndex {
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
 
-        Map<Integer, List<Integer>> map;
+        int[] nums;
+        Random random;
+
+        public Solution(int[] nums) {
+            this.nums = nums;
+            random = new Random();
+        }
+
+        public int pick(int target) {
+            int ans = -1;
+            int count = 0;
+            for (int i = 0; i < nums.length; i++) {
+                if (nums[i] != target) {
+                    continue;
+                }
+                if (random.nextInt(++count) == 0) {
+                    ans = i;
+                }
+            }
+            return ans;
+        }
+
+        /*Map<Integer, List<Integer>> map;
 
         public Solution(int[] nums) {
             map = new HashMap<>();
@@ -50,7 +72,7 @@ public class RandomPickIndex {
             assert list != null && !list.isEmpty();
             int index = new Random().nextInt(list.size());
             return list.get(index);
-        }
+        }*/
     }
 
 /**
