@@ -72,7 +72,7 @@ public class SplitTwoStringsToMakePalindrome {
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public boolean checkPalindromeFormation(String a, String b) {
-            int left = a.length() - 1;
+            int left = (a.length() - 1) / 2;
             left = Math.min(check(a, a, left), check(b, b, left));
             left = Math.min(check(a, b, left), check(b, a, left));
             return left == -1;
