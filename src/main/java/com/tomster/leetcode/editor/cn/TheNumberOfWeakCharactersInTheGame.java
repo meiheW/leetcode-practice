@@ -61,7 +61,7 @@ public class TheNumberOfWeakCharactersInTheGame {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
-        public int numberOfWeakCharacters(int[][] properties) {
+        public int numberOfWeakCharacters1(int[][] properties) {
             //攻击力递减，攻击力相同防御力递增
             Arrays.sort(properties, (o1, o2) -> o1[0] == o2[0]
                     ? Integer.compare(o1[1], o2[1])
@@ -74,6 +74,23 @@ public class TheNumberOfWeakCharactersInTheGame {
                     ans++;
                 } else {
                     stack.add(property[1]);
+                }
+            }
+            return ans;
+        }
+
+        public int numberOfWeakCharacters(int[][] properties) {
+            //attack降序排列，相同情况下defense升序排列
+            Arrays.sort(properties, (o1, o2) -> o1[0] != o2[0] ?
+                    Integer.compare(o2[0], o1[0]) : Integer.compare(o1[1], o2[1]));
+            int ans = 0;
+            int maxDef = -1;
+            //攻击力相同，防御力是递增的，所以小于maxDef，肯定攻击力也小
+            for (int[] property : properties) {
+                if (property[1] < maxDef) {
+                    ans++;
+                } else {
+                    maxDef = property[1];
                 }
             }
             return ans;
