@@ -36,100 +36,51 @@ public class LetterCombinationsOfAPhoneNumber {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
-        /**
-         * 广度优先搜索(BFS)
-         * 这种搜索方式一般借助队列来实现数据的扩展
-         *
-         * @param digits
-         * @return
-         */
+
         public List<String> letterCombinations(String digits) {
-            List<String> result = new ArrayList<>();
+            List<String> ans = new ArrayList<>();
             if (digits == null || digits.length() == 0) {
-                return result;
+                return ans;
             }
-            Queue<String> queue = new LinkedBlockingDeque<>();
-            queue.offer("");
-
-            for (int i = 0; i < digits.length(); i++) {
-                int num = digits.charAt(i) - '0';
-                char[] chars = getChars(num);
-
-                int size = queue.size();
-                for (int j = 0; j < size; j++) {
-                    String poll = queue.poll();
-                    for (char c : chars) {
-                        queue.offer(poll + c);
-                    }
-                }
-            }
-
-            return new ArrayList<>(queue);
+            backTracing(ans, new StringBuilder(), digits, 0);
+            return ans;
         }
 
-        /**
-         * 数字和字母的映射
-         *
-         * @param i
-         * @return
-         */
-        char[] getChars(int i) {
+        private void backTracing(List<String> ans, StringBuilder temp, String digits, int start) {
+            if (temp.length() == digits.length()) {
+                ans.add(temp.toString());
+                return;
+            }
+            char c = digits.charAt(start);
+            char[] chars = getChars(c);
+            for (int i = 0; i < chars.length; i++) {
+                temp.append(chars[i]);
+                backTracing(ans, temp, digits, start + 1);
+                temp.deleteCharAt(temp.length() - 1);
+            }
+        }
+
+        char[] getChars(char i) {
             switch (i) {
-                case 2:
+                case '2':
                     return new char[]{'a', 'b', 'c'};
-                case 3:
+                case '3':
                     return new char[]{'d', 'e', 'f'};
-                case 4:
+                case '4':
                     return new char[]{'g', 'h', 'i'};
-                case 5:
+                case '5':
                     return new char[]{'j', 'k', 'l'};
-                case 6:
+                case '6':
                     return new char[]{'m', 'n', 'o'};
-                case 7:
+                case '7':
                     return new char[]{'p', 'q', 'r', 's'};
-                case 8:
+                case '8':
                     return new char[]{'t', 'u', 'v'};
-                case 9:
+                case '9':
                     return new char[]{'w', 'x', 'y', 'z'};
                 default:
                     return null;
             }
-        }
-
-
-
-        /**
-         * 我第一次AC的方法，非常一般，暴力解决，其实就是用了
-         * 这虽然是一到简单题，但是给我们很多启示，看到这类题一定要想到考察的哪类基本算法
-         * BFS,DFS,回溯,递归
-         *
-         * @param digits
-         * @return
-         */
-        public List<String> letterCombinations1(String digits) {
-            if (digits == null || digits.length() == 0) {
-                return new ArrayList<>();
-            }
-            List<String> res = new ArrayList<>();
-            for (int index = 0; index < digits.length(); index++) {
-                int i = digits.charAt(index) - '0';
-                char[] chars = getChars(i);
-                if (res.size() == 0) {
-                    for (char c : chars) {
-                        res.add(c + "");
-                    }
-                } else {
-                    List<String> newList = new ArrayList<>();
-                    for (String ele : res) {
-                        for (char c : chars) {
-                            newList.add(ele + c);
-                        }
-                    }
-                    res = newList;
-
-                }
-            }
-            return res;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
