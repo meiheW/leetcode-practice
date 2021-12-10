@@ -33,27 +33,25 @@ public class GenerateParentheses {
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public List<String> generateParenthesis(int n) {
-            List<String> result = new ArrayList<>();
-            dfs(result, n, n, "");
-            return result;
+            List<String> ans = new ArrayList<>();
+            dfs(ans, n, n, "");
+            return ans;
         }
 
-        private void dfs(List<String> result, int left, int right, String s) {
+        private void dfs(List<String> ans, int left, int right, String s) {
             if (left == 0 && right == 0) {
-                result.add(s);
+                ans.add(s);
                 return;
             }
-
-            if (left != 0) {
-                dfs(result, left - 1, right, s + "(");
+            //左括号有剩余就往后加一个
+            if (left > 0) {
+                dfs(ans, left - 1, right, s + "(");
             }
+            //右括号剩的多加一个
             if (right > left) {
-                dfs(result, left, right - 1, s + ")");
+                dfs(ans, left, right - 1, s + ")");
             }
-
-
         }
-
     }
 //leetcode submit region end(Prohibit modification and deletion)
 
