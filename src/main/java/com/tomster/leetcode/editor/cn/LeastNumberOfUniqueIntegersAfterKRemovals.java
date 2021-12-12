@@ -45,7 +45,34 @@ public class LeastNumberOfUniqueIntegersAfterKRemovals {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
+
         public int findLeastNumOfUniqueInts(int[] arr, int k) {
+            Map<Integer, Integer> countMap = new HashMap<>();
+            for (int i = 0; i < arr.length; i++) {
+                countMap.put(arr[i], countMap.getOrDefault(arr[i], 0) + 1);
+            }
+            TreeMap<Integer, Integer> freqMap = new TreeMap<>();
+            for (Integer count : countMap.values()) {
+                freqMap.put(count, freqMap.getOrDefault(count, 0) + 1);
+            }
+            int totalNum = countMap.size();
+            int numCount = 0;
+            while (k > 0 && !freqMap.isEmpty()) {
+                Map.Entry<Integer, Integer> entry = freqMap.pollFirstEntry();
+                int count = entry.getKey();
+                int freq = entry.getValue();
+                if (k > freq * count) {
+                    k -= freq * count;
+                    numCount += freq;
+                } else if (k <= freq * count) {
+                    numCount += k / count;
+                    k = 0;
+                }
+            }
+            return totalNum-numCount;
+        }
+
+        public int findLeastNumOfUniqueInts1(int[] arr, int k) {
             Map<Integer, Integer> countMap = new HashMap<>();
             List<Integer> list = new ArrayList<>();
             for (int value : arr) {
