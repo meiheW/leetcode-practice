@@ -56,10 +56,10 @@ public class SumOfSquareNumbers {
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public boolean judgeSquareSum(int c) {
-            int low = 1;
-            int high = (int) Math.sqrt(c + 0.05);
-            while (low < high) {
-                int sum = low * low + high * high;
+            long low = 0;
+            long high = (long) Math.sqrt(c + 0.05);
+            while (low <= high) {
+                long sum = low * low + high * high;
                 if (sum > c) {
                     high--;
                 } else if (sum < c) {
