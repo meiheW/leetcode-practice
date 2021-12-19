@@ -56,6 +56,7 @@ public class FibonacciNumber {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
+        //动态规划O(N)，空间复杂度可以优化如下
         public int fib(int n) {
             if (n <= 1) {
                 return n;
