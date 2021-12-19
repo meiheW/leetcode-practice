@@ -72,7 +72,20 @@ public class MaximumScoreFromRemovingStones {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
+
         public int maximumScore(int a, int b, int c) {
+            int max = Math.max(a, Math.max(b, c));
+            int min = Math.min(a, Math.min(b, c));
+            int mid = a + b + c - max - min;
+            if (max >= min + mid) {
+                return min + mid;
+            } else {
+                return (a + b + c) / 2;
+            }
+        }
+
+        //优先队列
+        public int maximumScore1(int a, int b, int c) {
             PriorityQueue<Integer> pq = new PriorityQueue<>(Comparator.reverseOrder());
             pq.addAll(Arrays.asList(a, b, c));
             int count = 0;
