@@ -56,7 +56,9 @@ public class HandOfStraights {
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public boolean isNStraightHand(int[] hand, int groupSize) {
-
+            if (hand.length % groupSize != 0) {
+                return false;
+            }
             TreeMap<Integer, Integer> countMap = new TreeMap<>();
             for (int item : hand) {
                 countMap.put(item, countMap.getOrDefault(item, 0) + 1);
