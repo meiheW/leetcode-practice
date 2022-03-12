@@ -72,7 +72,9 @@ public class HouseRobberIii {
      * }
      */
     class Solution {
+        //以该节点为root且包含该节点的最大值
         Map<TreeNode, Integer> f = new HashMap<>();
+        //以该节点为root且不包含该节点的最大值
         Map<TreeNode, Integer> g = new HashMap<>();
 
         public int rob(TreeNode root) {
