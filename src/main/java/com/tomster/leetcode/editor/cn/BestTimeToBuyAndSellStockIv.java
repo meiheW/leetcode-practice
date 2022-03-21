@@ -55,6 +55,8 @@ public class BestTimeToBuyAndSellStockIv {
             }
             int n = prices.length;
             k = Math.min(k, n / 2);
+            //buy[i][j]:prices[0..i]数组恰好进行过j次交易手上有股票的最大利润
+            //sell[i][j]:prices[0..i]数组恰好进行过j次交易手上无股票的最大利润
             int[][] buy = new int[n][k + 1];
             int[][] sell = new int[n][k + 1];
 
