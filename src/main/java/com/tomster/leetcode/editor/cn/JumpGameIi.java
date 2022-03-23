@@ -70,7 +70,7 @@ public class JumpGameIi {
          * @param nums
          * @return
          */
-        public int jump(int[] nums) {
+        public int jump2(int[] nums) {
             int curPos = 0;
             int steps = 0;
             int nextPos = 0;
@@ -91,6 +91,26 @@ public class JumpGameIi {
                 }
             }
             return steps;
+        }
+
+
+        //动态规划
+        public int jump(int[] nums) {
+            int n = nums.length;
+            if (n <= 2) {
+                return n - 1;
+            }
+            //dp[i]表示到nums[i]的
+            int[] dp = new int[n];
+            for (int i = 1; i < n; i++) {
+                dp[i] = i;
+                for (int j = 0; j < i; j++) {
+                    if (nums[j] + j >= i) {
+                        dp[i] = Math.min(dp[i], dp[j] + 1);
+                    }
+                }
+            }
+            return dp[n - 1];
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
