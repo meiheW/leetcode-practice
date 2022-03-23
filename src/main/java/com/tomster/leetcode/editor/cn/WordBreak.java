@@ -49,6 +49,7 @@ public class WordBreak {
         //输出: true
         public boolean wordBreak(String s, List<String> wordDict) {
             int n = s.length();
+            //dp[i]代表s[0...i-1]是否能由单词表中的单词拼成
             boolean[] dp = new boolean[n + 1];
             dp[0] = true;
             for (int i = 1; i <= n; i++) {
