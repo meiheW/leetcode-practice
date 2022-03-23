@@ -36,13 +36,34 @@ public class JumpGame {
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
 
+
+        public boolean canJump(int[] nums) {
+            if (nums.length <= 1) {
+                return true;
+            }
+            int n = nums.length;
+            int right = 0;
+            for (int i = 0; i < n; i++) {
+                if (i <= right) {
+                    right = Math.max(right, i + nums[i]);
+                    if (right >= n - 1) {
+                        return true;
+                    }
+                } else {
+                    return false;
+                }
+            }
+            return false;
+
+        }
+
         /**
          * 找到0的位置，看他前面有没有能跨越过去的，有就可以，没有就不能走到最后一个
          *
          * @param nums
          * @return
          */
-        public boolean canJump(int[] nums) {
+        public boolean canJump2(int[] nums) {
             if (nums == null) {
                 return false;
             } else if (nums.length == 1) {
