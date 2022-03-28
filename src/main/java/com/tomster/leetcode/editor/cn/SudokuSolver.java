@@ -54,7 +54,6 @@ public class SudokuSolver {
             if (row == n) {
                 return true;
             }
-
             for (int i = row; i < n; i++) {
                 for (int j = col; j < n; j++) {
                     if (board[i][j] != '.') {
