@@ -62,7 +62,10 @@ public class WordBreakIi {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
+        //输入:s = "catsanddog", wordDict = ["cat","cats","and","sand","dog"]
+        //输出:["cats and dog","cat sand dog"]
         public List<String> wordBreak(String s, List<String> wordDict) {
+            //map保存i和s[0...i-1]表示能拆分的字符串列表
             Map<Integer, List<String>> map = new HashMap<>();
             for (int i = 1; i <= s.length(); i++) {
                 List<String> list = new ArrayList<>();
