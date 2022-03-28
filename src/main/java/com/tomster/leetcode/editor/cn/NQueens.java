@@ -61,7 +61,6 @@ public class NQueens {
                     board[i][j] = '.';
                 }
             }
-
             backTrace(result, board, 0, n);
             return result;
         }
@@ -79,7 +78,6 @@ public class NQueens {
                 backTrace(result, board, row + 1, n);
                 board[row][col] = '.';
             }
-
         }
 
         private boolean isValid(char[][] board, int row, int col, int n) {
@@ -101,7 +99,6 @@ public class NQueens {
                     return false;
                 }
             }
-
             return true;
         }
 
