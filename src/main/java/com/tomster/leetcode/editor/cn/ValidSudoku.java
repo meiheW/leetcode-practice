@@ -79,9 +79,6 @@ public class ValidSudoku {
          * 每一行包括1-9，不能有重复
          * 每一列包括1-9，不能有重复
          * 每一个特定3*3网格包括1-9，不能有重复
-         *
-         * @param board
-         * @return
          */
         public boolean isValidSudoku(char[][] board) {
             int[][] rows = new int[9][9];
