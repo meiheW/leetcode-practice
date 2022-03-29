@@ -104,8 +104,8 @@ public class NQueens {
 
         private List<String> charMatrix2StringList(char[][] board) {
             List<String> list = new ArrayList<>();
-            for (int i = 0; i < board.length; i++) {
-                list.add(String.valueOf(board[i]));
+            for (char[] chars : board) {
+                list.add(String.valueOf(chars));
             }
             return list;
         }
