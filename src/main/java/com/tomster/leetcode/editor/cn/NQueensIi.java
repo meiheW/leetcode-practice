@@ -48,6 +48,8 @@ import java.util.Set;
 public class NQueensIi {
     public static void main(String[] args) {
         Solution solution = new NQueensIi().new Solution();
+        int i = solution.totalNQueens(4);
+        System.out.println(i);
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
