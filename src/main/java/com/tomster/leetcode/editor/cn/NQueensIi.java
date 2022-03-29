@@ -37,7 +37,9 @@
 package com.tomster.leetcode.editor.cn;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author: tomster
@@ -51,59 +53,38 @@ public class NQueensIi {
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
 
-        public int result = 0;
+        private final Set<Integer> occupiedCols = new HashSet<>();
+        private final Set<Integer> occupiedDiag1s = new HashSet<Integer>();
+        private final Set<Integer> occupiedDiag2s = new HashSet<Integer>();
 
         public int totalNQueens(int n) {
-            char[][] board = new char[n][n];
-            for (int i = 0; i < n; i++) {
-                for (int j = 0; j < n; j++) {
-                    board[i][j] = '.';
-                }
-            }
-
-            backTrace(board, 0, n);
-            return result;
+            return totalNQueensHelper(0, 0, n);
         }
 
-        private void backTrace(char[][] board, int row, int n) {
-            if (row == n) {
-                result++;
-                return;
-            }
+        private int totalNQueensHelper(int row, int count, int n) {
             for (int col = 0; col < n; col++) {
-                if (!isValid(board, row, col, n)) {
+                if (occupiedCols.contains(col))
                     continue;
+                int diag1 = row - col;
+                if (occupiedDiag1s.contains(diag1))
+                    continue;
+                int diag2 = row + col;
+                if (occupiedDiag2s.contains(diag2))
+                    continue;
+                if (row == n - 1)
+                    count++;
+                else {
+                    occupiedCols.add(col);
+                    occupiedDiag1s.add(diag1);
+                    occupiedDiag2s.add(diag2);
+                    count = totalNQueensHelper(row + 1, count, n);
+                    occupiedCols.remove(col);
+                    occupiedDiag1s.remove(diag1);
+                    occupiedDiag2s.remove(diag2);
                 }
-                board[row][col] = 'Q';
-                backTrace(board, row + 1, n);
-                board[row][col] = '.';
             }
-
+            return count;
         }
-
-        private boolean isValid(char[][] board, int row, int col, int n) {
-            //列
-            for (int i = 0; i < row; i++) {
-                if (board[i][col] == 'Q') {
-                    return false;
-                }
-            }
-            //右上方
-            for (int i = row - 1, j = col + 1; i >= 0 && j < n; i--, j++) {
-                if (board[i][j] == 'Q') {
-                    return false;
-                }
-            }
-            //左上方
-            for (int i = row - 1, j = col - 1; i >= 0 && j >= 0; i--, j--) {
-                if (board[i][j] == 'Q') {
-                    return false;
-                }
-            }
-
-            return true;
-        }
-
     }
 //leetcode submit region end(Prohibit modification and deletion)
 
