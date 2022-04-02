@@ -55,6 +55,24 @@ public class SearchA2dMatrix {
 
         public boolean searchMatrix(int[][] matrix, int target) {
             int m = matrix.length, n = matrix[0].length;
+            int row = 0, col = n - 1;
+            while (row < m && col >= 0) {
+                int cur = matrix[row][col];
+                if (cur < target) {
+                    row++;
+                } else if (cur > target) {
+                    col--;
+                } else {
+                    return true;
+                }
+
+            }
+            return false;
+        }
+
+
+        public boolean searchMatrix2(int[][] matrix, int target) {
+            int m = matrix.length, n = matrix[0].length;
             int low = 0, high = m - 1;
             while (low <= high) {
                 int middle = low + (high - low) / 2;
