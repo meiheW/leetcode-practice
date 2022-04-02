@@ -68,12 +68,10 @@ public class CoinChange2 {
             //dp[i]表示构成金额为i的方案数量
             int[] dp = new int[amount + 1];
             dp[0] = 1;
-            //错了，这样循环会记录重复的
-            //for (int i = 1; i <= amount; i++) {
-            //for (int coin : coins) {
+            //不考虑组合的顺序，amount放在里面
             for (int coin : coins) {
                 for (int i = 1; i <= amount; i++) {
-                    //避免重复，每种方案都以coin结尾，且不包含大于coin的硬币
+                    //避免重复，每种方案都以coin结尾
                     if (i >= coin) {
                         dp[i] += dp[i - coin];
                     }
