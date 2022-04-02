@@ -35,6 +35,7 @@
 // 👍 88 👎 0
 
 package com.tomster.leetcode.editor.cn;
+
 /**
  * @author: tomster
  * @data: 2022-04-02 16:39:12
@@ -43,12 +44,33 @@ public class CountNegativeNumbersInASortedMatrix {
     public static void main(String[] args) {
         Solution solution = new CountNegativeNumbersInASortedMatrix().new Solution();
     }
-    //leetcode submit region begin(Prohibit modification and deletion)
-class Solution {
-    public int countNegatives(int[][] grid) {
 
+    //leetcode submit region begin(Prohibit modification and deletion)
+    class Solution {
+        //矩阵行列皆非递增，负数的个数
+        //输入：grid =
+        // [ [4,3,2,-1],
+        //   [3,2,1,-1],
+        //   [1,1,-1,-2],
+        //   [-1,-1,-2,-3] ]
+        //输出：8
+        public int countNegatives(int[][] grid) {
+            int m = grid.length, n = grid[0].length;
+            int row = 0, col = n - 1;
+            int ans = 0;
+            while (row < m && col >= 0) {
+                int cur = grid[row][col];
+                if (cur < 0) {
+                    ans += (m - row);
+                    col--;
+                } else {
+                    //cur>=0
+                    row++;
+                }
+            }
+            return ans;
+        }
     }
-}
 //leetcode submit region end(Prohibit modification and deletion)
 
 }
