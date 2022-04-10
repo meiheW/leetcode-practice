@@ -55,14 +55,15 @@ public class LinkedListRandomNode {
         }
 
         public int getRandom() {
+            ListNode cur = head;
             int count = 0;
-            ListNode node = head;
-            int ans = node.val;
-            while (node != null) {
-                if (random.nextInt(++count) == 0) {
-                    ans = node.val;
+            int ans = 0;
+            while (cur != null) {
+                int r = random.nextInt(++count);
+                if (r == 0) {
+                    ans = cur.val;
                 }
-                node = node.next;
+                cur = cur.next;
             }
             return ans;
         }
