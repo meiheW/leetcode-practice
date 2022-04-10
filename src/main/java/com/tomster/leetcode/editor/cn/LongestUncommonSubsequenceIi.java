@@ -39,6 +39,8 @@
 
 package com.tomster.leetcode.editor.cn;
 
+import sun.rmi.server.UnicastRef2;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -54,15 +56,35 @@ public class LongestUncommonSubsequenceIi {
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public int findLUSlength(String[] strs) {
-            Set<String> set = new HashSet<>();
-            int maxLen = 0;
-            for (String str : strs) {
-                maxLen = Math.max(maxLen, str.length());
-                if (!set.add(str)) {
-                    return -1;
+            int ans = -1;
+            int i = 0, j = 0;
+            for (i = 0; i < strs.length; i++) {
+                for (j = 0; j < strs.length; j++) {
+                    if (i == j) {
+                        continue;
+                    }
+                    if (isSubSeq(strs[i], strs[j])) {
+                        break;
+                    }
+                }
+                if (j == strs.length) {
+                    ans = Math.max(ans, strs[i].length());
                 }
             }
-            return maxLen;
+            return ans;
+        }
+
+        private boolean isSubSeq(String str0, String str1) {
+            if (str0.length() > str1.length()) {
+                return false;
+            }
+            int p0 = 0, p1 = 0;
+            for (p1 = 0; p0 < str0.length() && p1 < str1.length(); p1++) {
+                if (str1.charAt(p1) == str0.charAt(p0)) {
+                    p0++;
+                }
+            }
+            return p0 == str0.length();
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
