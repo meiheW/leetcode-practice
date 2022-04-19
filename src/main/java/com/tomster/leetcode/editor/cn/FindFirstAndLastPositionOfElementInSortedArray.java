@@ -56,6 +56,9 @@ public class FindFirstAndLastPositionOfElementInSortedArray {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
+        //输入：nums = [5,7,7,8,8,10], target = 8
+        //输出：[3,4]
+        //二分，注意边界
         public int[] searchRange(int[] nums, int target) {
             int i = Arrays.binarySearch(nums, target);
             if (i < 0) {
