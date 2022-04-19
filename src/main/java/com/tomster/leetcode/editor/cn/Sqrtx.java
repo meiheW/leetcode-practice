@@ -47,18 +47,18 @@ public class Sqrtx {
             }
             int low = 0;
             int high = x;
-            while (high - low > 1) {
+            while (low <= high) {
                 int middle = (low + high) / 2;
                 long square = (long) middle * middle;
                 if (square == x) {
                     return middle;
                 } else if (square < x) {
-                    low = middle;
+                    low = middle + 1;
                 } else {
-                    high = middle;
+                    high = middle - 1;
                 }
             }
-            return low;
+            return high;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
