@@ -64,10 +64,7 @@
 
 package com.tomster.leetcode.editor.cn;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 /**
  * @author: tomster
@@ -81,40 +78,32 @@ public class TheKWeakestRowsInAMatrix {
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public int[] kWeakestRows(int[][] mat, int k) {
-            int row = mat.length;
-            int col = mat[0].length;
-
-            int[] soldierNum = new int[row];
-            for (int i = 0; i < row; i++) {
-                int num = 0;
-                for (int j = 0; j < col; j++) {
-                    if (mat[i][j] == 0) {
-                        break;
-                    }
-                    num++;
-                }
-                soldierNum[i] = num;
+            int m = mat.length;
+            int[][] rowSoldier = new int[m][2];
+            for (int i = 0; i < m; i++) {
+                rowSoldier[i][0] = i;
+                rowSoldier[i][1] = soldierNum(mat[i]);
             }
-
-            List<Integer> list = new ArrayList<>();
-            for (int i = 0; i < row; i++) {
-                list.add(i);
-            }
-            Collections.sort(list, new Comparator<Integer>() {
-                @Override
-                public int compare(Integer o1, Integer o2) {
-                    return soldierNum[o1] != soldierNum[o2]
-                            ? soldierNum[o1] - soldierNum[o2]
-                            : o1 - o2;
-                }
-            });
-
-            list.subList(0, k);
-            int[] result = new int[k];
+            Arrays.sort(rowSoldier, (o1, o2) -> o1[1] != o2[1] ? Integer.compare(o1[1], o2[1])
+                    : Integer.compare(o1[0], o2[0]));
+            int[] ans = new int[k];
             for (int i = 0; i < k; i++) {
-                result[i] = list.get(i);
+                ans[i] = rowSoldier[i][0];
             }
-            return result;
+            return ans;
+        }
+
+        private int soldierNum(int[] arr) {
+            int low = 0, high = arr.length - 1;
+            while (low <= high) {
+                int middle = low + (high - low) / 2;
+                if (arr[middle] == 1) {
+                    low = middle + 1;
+                } else {
+                    high = middle - 1;
+                }
+            }
+            return low;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
