@@ -56,16 +56,14 @@ public class CountNegativeNumbersInASortedMatrix {
         //输出：8
         public int countNegatives(int[][] grid) {
             int m = grid.length, n = grid[0].length;
-            int row = 0, col = n - 1;
+            int r = 0, c = n - 1;
             int ans = 0;
-            while (row < m && col >= 0) {
-                int cur = grid[row][col];
-                if (cur < 0) {
-                    ans += (m - row);
-                    col--;
+            while (r < m && c >= 0) {
+                if (grid[r][c] >= 0) {
+                    r++;
                 } else {
-                    //cur>=0
-                    row++;
+                    ans += (m - r);
+                    c--;
                 }
             }
             return ans;
