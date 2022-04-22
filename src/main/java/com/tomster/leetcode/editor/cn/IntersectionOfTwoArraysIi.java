@@ -34,9 +34,7 @@
 
 package com.tomster.leetcode.editor.cn;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author: tomster
@@ -49,10 +47,32 @@ public class IntersectionOfTwoArraysIi {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
+
         public int[] intersect(int[] nums1, int[] nums2) {
+            Arrays.sort(nums1);
+            Arrays.sort(nums2);
+
+            List<Integer> ans = new ArrayList<>();
+
+            int p1 = 0, p2 = 0;
+            while (p1 < nums1.length && p2 < nums2.length) {
+                if (nums1[p1] < nums2[p2]) {
+                    p1++;
+                } else if (nums1[p1] > nums2[p2]) {
+                    p2++;
+                } else {
+                    ans.add(nums1[p1]);
+                    p1++;
+                    p2++;
+                }
+            }
+            return ans.stream().mapToInt(Integer::intValue).toArray();
+        }
+
+        public int[] intersect1(int[] nums1, int[] nums2) {
 
             if (nums1.length > nums2.length) {
-                return intersect(nums2, nums1);
+                return intersect1(nums2, nums1);
             }
             Map<Integer, Integer> map = new HashMap<>();
             for (int num : nums1) {
