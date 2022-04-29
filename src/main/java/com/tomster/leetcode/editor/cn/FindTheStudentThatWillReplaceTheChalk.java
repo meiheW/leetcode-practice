@@ -53,6 +53,8 @@
 
 package com.tomster.leetcode.editor.cn;
 
+import java.util.Arrays;
+
 /**
  * @author: tomster
  * @data: 2021-10-30 11:48:55
@@ -75,6 +77,14 @@ public class FindTheStudentThatWillReplaceTheChalk {
                 res -= chalk[index++];
             }
             return index;
+            //下面用二分好慢。。
+            /*long[] preSum = new long[chalk.length];
+            preSum[0] = chalk[0];
+            for (int i = 1; i < chalk.length; i++) {
+                preSum[i] = preSum[i - 1] + chalk[i];
+            }
+            int index = Arrays.binarySearch(preSum, res);
+            return index > 0 ? index + 1 : -(1 + index);*/
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
