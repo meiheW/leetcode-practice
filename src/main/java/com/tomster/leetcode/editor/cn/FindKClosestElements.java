@@ -37,10 +37,7 @@
 
 package com.tomster.leetcode.editor.cn;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.PriorityQueue;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -50,32 +47,63 @@ import java.util.stream.Collectors;
 public class FindKClosestElements {
     public static void main(String[] args) {
         Solution solution = new FindKClosestElements().new Solution();
+        List<Integer> closestElements = solution.findClosestElements(new int[]{1, 2, 3, 4, 5}, 4, -1);
+        System.out.println(closestElements);
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
+
+        //二分
         public List<Integer> findClosestElements(int[] arr, int k, int x) {
-
-            PriorityQueue<Integer> pq = new PriorityQueue<>(new Comparator<Integer>() {
-                @Override
-                public int compare(Integer o1, Integer o2) {
-                    return Math.abs(o1 - x) - Math.abs(o2 - x) != 0
-                            ? Math.abs(o2 - x) - Math.abs(o1 - x)
-                            : Integer.compare(o2, o1);
+            List<Integer> ans = new ArrayList<>();
+            int n = arr.length;
+            int index = Arrays.binarySearch(arr, x);
+            if (index < 0) {
+                index = -(1 + index);
+            }
+            int low = index - 1;
+            int high = index;
+            int kk = k;
+            while (kk-- > 0) {
+                if (low == -1) {
+                    high = k;
+                    break;
+                } else if (high == arr.length) {
+                    low = n - k - 1;
+                    break;
+                } else {
+                    if (Math.abs(arr[low] - x) <= Math.abs(arr[high] - x)) {
+                        low--;
+                    } else {
+                        high++;
+                    }
                 }
-            });
+            }
+            for (int i = low + 1; i < high; i++) {
+                ans.add(arr[i]);
+            }
+            return ans;
+        }
 
-            for (int value : arr) {
-                pq.offer(value);
+
+        //堆
+        public List<Integer> findClosestElements1(int[] arr, int k, int x) {
+            PriorityQueue<Integer> pq = new PriorityQueue<>((o1, o2) -> Math.abs(o1 - x) != Math.abs(o2 - x) ?
+                    Integer.compare(Math.abs(o2 - x), Math.abs(o1 - x)) :
+                    Integer.compare(o2, o1));
+
+            for (int i : arr) {
+                pq.offer(i);
                 if (pq.size() > k) {
                     pq.poll();
                 }
             }
-            List<Integer> list = new ArrayList<>();
+            List<Integer> ans = new ArrayList<>();
             while (!pq.isEmpty()) {
-                list.add(pq.poll());
+                ans.add(pq.poll());
             }
-            return list.stream().sorted().collect(Collectors.toList());
+            return ans.stream().sorted().collect(Collectors.toList());
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
