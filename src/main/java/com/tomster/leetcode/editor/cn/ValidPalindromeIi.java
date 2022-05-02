@@ -62,8 +62,9 @@ public class ValidPalindromeIi {
                     if (cnt == 0) {
                         return false;
                     } else {
-                        return isValid(s.substring(low, high), 0)
-                                || isValid(s.substring(low + 1, high + 1), 0);
+                        --cnt;
+                        return isValid(s.substring(low, high), cnt)
+                                || isValid(s.substring(low + 1, high + 1), cnt);
                     }
                 }
             }
