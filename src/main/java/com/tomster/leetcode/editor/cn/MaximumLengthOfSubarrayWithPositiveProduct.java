@@ -56,6 +56,9 @@ public class MaximumLengthOfSubarrayWithPositiveProduct {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
+        //输入：nums = [1,-2,-3,4]
+        //输出：4
+        //解释：数组本身乘积就是正数，值为24
         public int getMaxLen(int[] nums) {
             int n = nums.length;
             //dp[i]表示以nums[i]结尾的成绩为正或者负的最长长度
