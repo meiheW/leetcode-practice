@@ -48,6 +48,9 @@ public class MaximumProductSubarray {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
+        //输入: nums = [2,3,-2,4]
+        //输出: 6
+        //解释: 子数组 [2,3] 有最大乘积6
         public int maxProduct(int[] nums) {
             int n = nums.length;
             //max[i],min[i]表示以nums[i]为结尾的子数组乘积的最大值和最小值
