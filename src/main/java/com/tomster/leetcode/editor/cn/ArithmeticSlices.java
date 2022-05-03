@@ -53,6 +53,9 @@ public class ArithmeticSlices {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
+        //输入：nums = [1,2,3,4]
+        //输出：3
+        //解释：nums中有三个子等差数组：[1,2,3]、[2,3,4]和[1,2,3,4]自身
         public int numberOfArithmeticSlices(int[] nums) {
             int n = nums.length;
             if (n <= 2) {
@@ -60,7 +63,6 @@ public class ArithmeticSlices {
             }
             //dp[i]表示以nums[i]为尾的子数组为等差数列的数量
             int[] dp = new int[n];
-
             for (int i = 2; i < n; i++) {
                 if (nums[i] - nums[i - 1] == nums[i - 1] - nums[i - 2]) {
                     dp[i] = dp[i - 1] + 1;
