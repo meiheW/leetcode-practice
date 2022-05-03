@@ -27,9 +27,6 @@ public class MaximumSubarray {
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public int maxSubArray(int[] nums) {
-            if (nums == null || nums.length == 0) {
-                return 0;
-            }
             //nums数组元素以i为结尾的最大子序列和
             int[] dp = new int[nums.length];
             dp[0] = nums[0];
