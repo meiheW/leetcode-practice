@@ -46,7 +46,7 @@ public class LongestPalindromicSubstring {
                 dp[i][i] = true;
                 for (int j = i + 1; j < n; j++) {
                     //(i,j)包括j的子串是回文串的条件
-                    dp[i][j] = (dp[i + 1][j - 1] || j - i <= 2) && s.charAt(i) == s.charAt(j);
+                    dp[i][j] = (j - i <= 2 || dp[i + 1][j - 1]) && s.charAt(i) == s.charAt(j);
                     if (dp[i][j] && j - i > right - left) {
                         left = i;
                         right = j;
